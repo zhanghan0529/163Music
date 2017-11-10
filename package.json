@@ -1,0 +1,22 @@
+{
+  "name": "163m",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhanghan0529/163_Music.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhanghan0529/163_Music/issues"
+  },
+  "homepage": "https://github.com/zhanghan0529/163_Music#readme",
+  "dependencies": {
+    "normalize.css": "^7.0.0"
+  }
+}
