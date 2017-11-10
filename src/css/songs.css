@@ -2,8 +2,35 @@
   margin: 0;
   padding: 0;
 }
-body {
+/* html {
   font-size: 62.5%;
+} */
+@media only screen and (min-width: 310px){
+    html {
+        font-size: 10px !important; 
+    }
+}
+@media only screen and (min-width: 350px){
+    html {
+        font-size: 12px !important;
+    }
+}
+
+@media only screen and (min-width: 410px){
+    html {
+        font-size: 13px !important;
+    }
+}
+
+@media only screen and (min-width: 569px){
+    html {
+        font-size: 15px !important; 
+    }
+}
+@media only screen and (min-width: 1000px){
+    html {
+        font-size: 16px !important; 
+    }
 }
 
 ul{
@@ -35,32 +62,20 @@ ul{
   filter: blur(30px) brightness(0.5);
   z-index: -1;
 }
-.pointer{
-    width: 8em;
-    height: 11.3em;
+.pointer>img{
+    width: 7rem;
     position: absolute;
     top:0;
-    left: 50%;
+    left: 50%; 
     transform: translate(-20%);
-    z-index: 2;
-}
-.pointer:after{
-    top: 0;
-    left: 0;
-    position: absolute;
-    content: "";
-    height: 100%;
-    width: 100%;
-    background: transparent url(//oz73ituo2.bkt.clouddn.com/needle.png) no-repeat center;
-    background-size: cover;
-
+    z-index: 1;
 }
 .song-gp {
-  padding-top: 6em;
+  padding-top: 5rem;
 }
 .song-gp .circle {
-  height: 23.8em;
-  width: 23.8em;
+  height: 23rem;
+  width: 23rem;
   margin: 0 auto;
   position: relative;
 }
@@ -99,45 +114,49 @@ ul{
 }
 .song-lyrics{
     text-align: center;
-    margin: 3em 0;
-    line-height: 2em;
+    margin: 2rem 0;
+    /* line-height: 2em; */
 }
 .song-lyrics .song-name{
-    font-size: 2em;
+    font-size: 1.8rem;
     color: rgba(255,255,255,0.9);
 }
 .song-lyrics .song-author,.song-lyrics ul{
-    font-size: 1.6em;
+    font-size: 1.4rem;
     color: #bbb;
 }
 .song-lyrics .lyrices{
-    height: 8em;
-    margin: 0.5em;
+    height: 9.7rem;
+    /* margin: 0.5em; */
     overflow: hidden;
     position: relative;
+    margin: 1rem 0;
 }
 .song-lyrics ul{
-    line-height: 2em;
+    /* line-height: 2.5rem; */  
     width: 80%;
-    padding: 0 4em;
+    padding: 0 4rem;
     position: absolute;
     top:0;
     left: 50%;
     transform: translate(-50%);
 }
-
+.song-lyrics ul>li{
+    margin: 1rem 0;
+}
 .more-aciton{
+    position: absolute;
     text-align: center;
-    font-size: 2em;
-    margin: 4em 0 0 0;
+    font-size: 1.8rem;
+    width: 100%;
+    bottom: 1em;
 }
 .more-aciton>a{
     display: inline-block;
     text-decoration: none;
-    padding: 0.4em 2.8em;
-    margin: 0 0.5em;
+    padding: 0.6rem 5rem;
     border: 1px solid #d33a31;
-    border-radius: 1em;
+    border-radius: 2rem;
 }
 .more-aciton .open{
     color: #d33a31;
