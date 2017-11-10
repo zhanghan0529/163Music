@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/zhanghan0529/163_Music#readme",
   "dependencies": {
+    "leancloud-realtime": "^3.5.7",
+    "leancloud-storage": "^3.3.1",
     "normalize.css": "^7.0.0"
   }
 }
