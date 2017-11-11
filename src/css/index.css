@@ -70,14 +70,14 @@ a {
 .tabs .tabs-list {
   font-size: 15px;
   text-align: center;
-    white-space: nowrap;
+ white-space: nowrap;
   width: 100%;
 }
 .tabs .tabs-list li {
   display: inline-block;
   padding: 10px 0;
   /* border:1px solid red; */
-  width:32.5%;
+  width:32.3%;
 }
 
 .recomusic .reco-music > span,.newmusic>span {
