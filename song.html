@@ -43,25 +43,28 @@
             <a href="" class="open">打开</a>
             <a href="" class="loaded">下载</a>
         </div>
-        
+
     </div>
     <script src="//cdn1.lncld.net/static/js/3.3.1/av-min.js"></script>
     <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script>
         var $audio = $("<audio loop='loop'></audio>");
-        $audio.attr({src:"//oz73ituo2.bkt.clouddn.com/%E5%B0%8F%E5%8D%8A.mp3",
-        autoplay:'autoplay'
-    });
+        $audio.attr({
+            src: "//oz73ituo2.bkt.clouddn.com/%E5%B0%8F%E5%8D%8A.mp3",
+            autoplay: 'autoplay'
+        });
         $audio.append("body")
     </script>
-    <!-- <script>
+
+    <script>
         var APP_ID = 'S1iaURCy2FgNQ1kbgbav6H88-gzGzoHsz';
         var APP_KEY = '6SwXnYDoVhaycC2vLBwJNc9D';
+        var songUrl;
         AV.init({
             appId: APP_ID,
             appKey: APP_KEY,
-        }); -->
-        <!-- // var songObject = AV.Object.extend("Song");//创建一个新的对象
+        });
+        // var songObject = AV.Object.extend("Song");//创建一个新的对象
         // var songObject1 = new songObject();//创建一个新到对象实例
         // songObject1.set({
         //     name: "晴天",
@@ -69,12 +72,12 @@
         //     url: "http://oz73ituo2.bkt.clouddn.com/%E6%99%B4%E5%A4%A9.mp3",
         //     imgUrl: "http://oz73ituo2.bkt.clouddn.com/%E6%99%B4%E5%A4%A9"
         // })//设置属性
-        // var query = new AV.Query('Song');
-        //   query.find().then(function (results) {
-        //         console.log(results)
-        //     }, function (error) {
-        //     }); -->
-         </script>
+        var query = new AV.Query('Song');
+        query.get("5a05bd4a67f35600635199fd").then(function (results) {
+            songUrl=results.attributes.url
+        }, function (error) {
+        });
+    </script>
 </body>
 
 </html>
