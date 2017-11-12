@@ -79,7 +79,9 @@ a {
   /* border:1px solid red; */
   width:32.3%;
 }
-
+.active{
+  display: none;
+}
 .recomusic .reco-music > span,.newmusic>span {
   display: inline-block;
   font-size: 1.4rem;
@@ -202,4 +204,67 @@ a {
     transform: scale(0.75);
     color: #aaa;
     padding-bottom: 2rem;
+}
+
+.hot-header{
+  height: 12rem ;
+  background: transparent url(//oz73ituo2.bkt.clouddn.com/hot_music_bg.jpg) no-repeat center;
+  background-size: cover;
+  background-color: #bbb;
+}
+.hot-pic{
+  display: inline-block;
+  margin: 2rem;
+}
+.hot-header .hot-pic img{
+  height: 6rem;
+}
+.hot-header .hot-pic .hotupdate{
+  font-size: 0.8rem;
+  color: white;
+  transform: scale(0.9); 
+  margin-left: -0.7rem 
+}
+
+.hotmusic-list{
+    /* padding: 0 0 0 1rem; */
+}
+.hotmusic-list li {
+    padding: 0.3rem 0 ;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    margin: 0 0.5rem;
+}
+.hotmusic{
+  display: inline-block;
+  float: left;
+}
+
+.hotmusic-list .listnum{
+  display: inline;
+  padding: 0.4rem 0;
+  float: left;
+  margin: 0.5rem;
+  font-size: 1.3rem;
+  color: #aaa;
+}
+.hotmusic-list .active1{
+  color: #d43c33;
+}
+.hotmusic-list .music-na{
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+}
+.hotmusic-list .music-aut img{
+    width: 1rem;
+}
+.hotmusic-list .music-aut{
+    color: #aaa;
+}
+
+.hot-music .hot-footer{
+  text-align: center;
+  color: #aaa;
+  font-size: 1.2rem;
+  padding: 1.5rem 0;
 }
