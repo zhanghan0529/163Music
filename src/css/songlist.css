@@ -1,0 +1,233 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+/* html {
+  font-size: 62.5%;
+} */
+@media only screen and (min-width: 310px) {
+  html {
+    font-size: 10px !important;
+  }
+}
+@media only screen and (min-width: 350px) {
+  html {
+    font-size: 12px !important;
+  }
+}
+
+@media only screen and (min-width: 410px) {
+  html {
+    font-size: 13px !important;
+  }
+}
+
+@media only screen and (min-width: 569px) {
+  html {
+    font-size: 15px !important;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  html {
+    font-size: 16px !important;
+  }
+}
+.list-header {
+  width: 100%;
+  height: 14rem;
+  position: relative;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  z-index: 1;
+  overflow: hidden;
+}
+.list-header::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background: transparent
+    url(//oz73ituo2.bkt.clouddn.com/%E5%8F%AF%E4%BB%A5%E4%BA%86) no-repeat
+    center;
+  background-size: cover;
+  filter: blur(10px);
+}
+.list-header .listpic {
+  display: inline-block;
+  width: 11rem;
+  font-size: 1.1rem;
+  position: relative;
+  margin: 2rem 1rem ;
+}
+
+.list-header .music-img img {
+  width: 100%;
+}
+
+.icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  vertical-align: -0.15rem;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.listpic .listennum {
+  position: absolute;
+  color: white;
+  width: 100%;
+  font-size: 1rem;
+}
+.listennum-in {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.5rem;
+}
+.listennum-in .icon,
+.listennum p {
+  float: left;
+}
+.listicon{
+    text-align: center;
+    color: white;
+    width: 3.8rem;
+    background: #d43c33;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    position: absolute;
+    top: 0.8rem;
+}
+.listpic::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 20px;
+  z-index: 2;
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.2), transparent);
+}
+
+.list-header .headertitle{
+    position: absolute;
+    display: inline-block;
+    margin: 2rem 0;
+}
+.headertitle .title{
+    display: block;
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+.headertitle .listaut{
+    font-size: 1.2rem;
+    color: #bbb;
+}
+.list-tag{
+    padding: 1rem 1rem;
+    color: #aaa;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+.list-tag .listtags{
+}
+.list-tag .listtags span{
+    padding: 0.2rem 0;
+    float: left;
+}
+.list-tag .tagname{
+    float: left;
+    margin-bottom: 0.8rem;
+}
+.list-tag .tagname>li{
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 0.2rem 0.4rem;
+}
+.songslist{
+    color: #666;
+    background: #eeeff0;
+    padding: 0.4rem 1rem;
+}
+.songsname li {
+    padding: 0.3rem 0 ;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    margin: 0 0.5rem;
+}
+.tagmusic{
+  display: inline-block;
+  float: left;
+}
+.songsname .listnum{
+  display: inline;
+  padding: 0.4rem 0;
+  float: left;
+  margin: 0.5rem;
+  font-size: 1.3rem;
+  color: #aaa;
+}
+.playbtn{
+    float: right;
+    margin-right: 1rem;
+    padding: 0.8rem 0;
+}
+.playbtn img{
+    width:2rem;
+}
+.songsname .music-na{
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+}
+.songsname .music-aut img{
+    width: 1rem;
+}
+.songsname .music-aut{
+    color: #aaa;
+}
+.collectlist{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: white;
+    width: 100%;
+    /* padding: 1rem -5rem 1rem 1rem; */
+    text-align: center;
+}
+.collectlist .collect{
+    border: 1px solid #d33a31;
+    background: #d33a31;
+    color: white;
+    margin: 0.8rem;
+    border-radius: 2rem;
+    font-size: 1.5rem;
+}
+.collectlist .collect .icon {
+  width: 2rem;
+  height: 2rem;
+  vertical-align: -0.5rem;
+  fill: currentColor;
+  overflow: hidden;
+}
+.collectlist .collect span{
+    display: inline-block;
+    padding: 0.6rem 0;
+}
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
