@@ -90,8 +90,7 @@ ul {
     center;
   background-size: cover;
 }
-.song-gp .circle::after {
-  content: "";
+.song-gp .circle>span {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -100,6 +99,7 @@ ul {
   background-size: cover;
   z-index: 1;
   animation: rotate 15s infinite linear;
+  
 }
 .song-gp .circle > img {
   position: absolute;
@@ -113,7 +113,12 @@ ul {
   z-index: -1;
   animation: rotate 15s infinite linear;
 }
-
+.song-gp .circle .playing{
+  animation-play-state:running;
+}
+.song-gp .circle .pausing{
+  animation-play-state:paused;
+}
 .icon {
   width: 1em;
   height: 1em;
@@ -131,7 +136,7 @@ ul {
   transform: translate(-50%, -50%);
   z-index: 5;
 }
-.active {
+.song-gp .circle .active {
   display: none;
 }
 .song-lyrics {

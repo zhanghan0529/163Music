@@ -19,15 +19,20 @@
         <div class="song-gp">
             <img src="" alt="">
             <div class="circle">
+                <span class="pausing"></span>
                 <div class="btn">
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-bofang"></use>
-                    </svg>
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-zanting"></use>
-                    </svg>
+                    <div class="btn1">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-bofang"></use>
+                        </svg>
+                    </div>
+                    <div class="btn2 active">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-zanting"></use>
+                        </svg>
+                    </div>
                 </div>
-                <!-- <img src="" alt=""> -->
+                <img src="" class="pausing" alt="">
             </div>
         </div>
         <div class="song-lyrics">
@@ -84,10 +89,11 @@
             //  console.log(results.attributes)
             var songAttr = results.attributes;
             $(".song-wrap>img").attr("src", songAttr.imgUrl);
+            $(".song-gp .circle>img").attr("src", songAttr.imgUrl);
             appendSong(songAttr);
-            // $("audio").attr("src", songAttr.url)
+            $("audio").attr("src", songAttr.url)
             // $audio.append("body");
-         
+
         }, function (error) {
             alert("获取歌曲失败~");
         });
@@ -95,18 +101,26 @@
         //     console.log($(this))
         //     $(this).attr("display", "none")
         //         .siblings().attr("display", "block");
-        //         $("audio")[0].pause();
         // })
 
-        $(".icon .icon1").on("click", function () {
-            console.log($(this))
-            $(this).addClass("active");
-            // $(".icon2").removeClass("active");
+        $(".btn1").on("click", function () {
+            // console.log($(this))
+            $(this).addClass("active").siblings().removeClass("active");
+            $("audio")[0].play();
+            $(".song-gp .circle > img").removeClass("pausing");
+            $(".song-gp .circle>span").removeClass("pausing");
         })
+        $(".btn2").on("click", function () {
+            $(this).addClass("active").siblings().removeClass("active");
+            $("audio")[0].pause();
+            $(".song-gp .circle>span").addClass("pausing");
+            $(".song-gp .circle > img").addClass("pausing");
+        })
+
         function appendSong(songMes) {
             var html = '';
             var html2 = '';
-            html += "<img src='" + songMes.imgUrl + "' alt=''>";
+            // html += "<img  class ='play'src='" + songMes.imgUrl + "' alt=''>";
             html2 += "<span class='song-name'>" + songMes.name + " - </span>";
             html2 += "<span class='song-author'>" + songMes.singer + "</span>";
             $(".circle").append(html);
