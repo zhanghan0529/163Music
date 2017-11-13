@@ -53,7 +53,7 @@
                 </ul>
             </div>
         </div>
-        <audio src="" autoplay></audio>
+        <audio src=""></audio>
         <div class="more-aciton">
             <a href="" class="open">打开</a>
             <a href="" class="loaded">下载</a>
@@ -93,7 +93,6 @@
             appendSong(songAttr);
             $("audio").attr("src", songAttr.url)
             // $audio.append("body");
-
         }, function (error) {
             alert("获取歌曲失败~");
         });
@@ -107,14 +106,14 @@
             // console.log($(this))
             $(this).addClass("active").siblings().removeClass("active");
             $("audio")[0].play();
-            $(".song-gp .circle > img").removeClass("pausing");
-            $(".song-gp .circle>span").removeClass("pausing");
+            $(".song-gp .circle > img").removeClass("pausing").addClass("playing");
+            $(".song-gp .circle > span").removeClass("pausing").addClass("playing");
         })
         $(".btn2").on("click", function () {
             $(this).addClass("active").siblings().removeClass("active");
             $("audio")[0].pause();
-            $(".song-gp .circle>span").addClass("pausing");
-            $(".song-gp .circle > img").addClass("pausing");
+            $(".song-gp .circle > span").addClass("pausing").removeClass("playing");
+            $(".song-gp .circle > img").addClass("pausing").removeClass("playing");
         })
 
         function appendSong(songMes) {
