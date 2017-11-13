@@ -70,19 +70,40 @@ a {
 .tabs .tabs-list {
   font-size: 15px;
   text-align: center;
- white-space: nowrap;
+  white-space: nowrap;
   width: 100%;
 }
 .tabs .tabs-list li {
   display: inline-block;
-  padding: 10px 0;
+
   /* border:1px solid red; */
-  width:32.3%;
+  width: 32.3%;
+  position: relative;
 }
-.active{
+.tabs .tabs-list li .text {
+  display: inline-block;
+  position: relative;
+  padding: 10px 0;
+}
+.tabs .tabs-list .active1 {
+  color: #d43c33;
+}
+.tabs .tabs-list .active1 .text {
+}
+.tabs .tabs-list .active1 .text::after {
+  content: "";
+  position: absolute;
+  background: #d43c33;
+  height: 2px;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+}
+.active {
   display: none;
 }
-.recomusic .reco-music > span,.newmusic>span {
+.recomusic .reco-music > span,
+.newmusic > span {
   display: inline-block;
   font-size: 1.4rem;
   margin: 12px 0;
@@ -107,10 +128,10 @@ a {
   width: 100%;
   font-size: 1rem;
 }
-.listennum-in{
-    position: absolute;
-    top: 0.2rem;
-    right: 0.5rem;
+.listennum-in {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.5rem;
 }
 .listennum:after {
   content: " ";
@@ -129,8 +150,9 @@ a {
   fill: currentColor;
   overflow: hidden;
 }
-.icon,.listennum p{
-    float: left;
+.icon,
+.listennum p {
+  float: left;
 }
 .reco-music > ul > li img {
   width: 100%;
@@ -140,107 +162,113 @@ a {
   display: block;
   padding: 0 0.3rem;
   color: black;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .clearfix::after {
   content: "";
   display: block;
   clear: both;
 }
-.newmusic{
-    margin-bottom: 1rem;
+.newmusic {
+  margin-bottom: 1rem;
 }
-.newmusic-in{
-    padding: 0 0 0 1rem;
+.newmusic-in {
+  padding: 0 0 0 1rem;
 }
-.newmusic ul>li{
-    padding: 1rem 0 ;
-    border-bottom: 1px solid #eee;
-    position: relative;
-}
-
-.newmusic-in .music-na{
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
-}
-.newmusic-in .music-aut img{
-    width: 1rem;
-}
-.newmusic-in .music-aut{
-    color: #aaa;
-}
-.playbtn{
-    float: right;
-    margin-right: 1rem;
-    padding: 0.8rem 0;
-}
-.playbtn img{
-    width:2rem;
+.newmusic ul > li {
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+  position: relative;
 }
 
-.recomusc-footer{
-
-    text-align: center;
-    background: transparent url(http://oz73ituo2.bkt.clouddn.com/recommand_bg.png) no-repeat center;
-    background-size: cover;
+.newmusic-in .music-na {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
 }
-.recomusc-footer .footer-logo{
-    padding: 1rem 0;
+.newmusic-in .music-aut img {
+  width: 1rem;
 }
-
-.recomusc-footer .footer-logo svg{
-    width: 19rem;
+.newmusic-in .music-aut {
+  color: #aaa;
 }
-.recomusc-footer .open-app span{
-    display: inline-block;
-    font-size: 1.3rem;
-    border: 1px solid #d43c33;
-    color: #d43c33;
-    padding: 1rem 4rem;
-    border-radius: 30px;
+.playbtn {
+  float: right;
+  margin-right: 1rem;
+  padding: 0.8rem 0;
+}
+.playbtn img {
+  width: 2rem;
 }
 
-.recomusc-footer .app-message{
-    font-size: 1rem;
-    transform: scale(0.75);
-    color: #aaa;
-    padding-bottom: 2rem;
+.recomusc-footer {
+  text-align: center;
+  background: transparent url(http://oz73ituo2.bkt.clouddn.com/recommand_bg.png)
+    no-repeat center;
+  background-size: cover;
+}
+.recomusc-footer .footer-logo {
+  padding: 1rem 0;
 }
 
-.hot-header{
-  height: 12rem ;
-  background: transparent url(//oz73ituo2.bkt.clouddn.com/hot_music_bg.jpg) no-repeat center;
+.recomusc-footer .footer-logo svg {
+  width: 19rem;
+}
+.recomusc-footer .open-app span {
+  display: inline-block;
+  font-size: 1.3rem;
+  border: 1px solid #d43c33;
+  color: #d43c33;
+  padding: 1rem 4rem;
+  border-radius: 30px;
+}
+
+.recomusc-footer .app-message {
+  font-size: 1rem;
+  transform: scale(0.75);
+  color: #aaa;
+  padding-bottom: 2rem;
+}
+
+.hot-header {
+  height: 12rem;
+  background: transparent url(//oz73ituo2.bkt.clouddn.com/hot_music_bg.jpg)
+    no-repeat center;
   background-size: cover;
   background-color: #bbb;
 }
-.hot-pic{
+.hot-pic {
   display: inline-block;
   margin: 2rem;
 }
-.hot-header .hot-pic img{
+.hot-header .hot-pic img {
   height: 6rem;
 }
-.hot-header .hot-pic .hotupdate{
+.hot-header .hot-pic .hotupdate {
   font-size: 0.8rem;
   color: white;
-  transform: scale(0.9); 
-  margin-left: -0.7rem 
+  transform: scale(0.9);
+  margin-left: -0.7rem;
 }
 
-.hotmusic-list{
-    /* padding: 0 0 0 1rem; */
+.hotmusic-list {
+  /* padding: 0 0 0 1rem; */
 }
 .hotmusic-list li {
-    padding: 0.3rem 0 ;
-    border-bottom: 1px solid #eee;
-    position: relative;
-    margin: 0 0.5rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  margin: 0 0.5rem;
 }
-.hotmusic{
+.hotmusic {
   display: inline-block;
   float: left;
 }
 
-.hotmusic-list .listnum{
+.hotmusic-list .listnum {
   display: inline;
   padding: 0.4rem 0;
   float: left;
@@ -248,21 +276,21 @@ a {
   font-size: 1.3rem;
   color: #aaa;
 }
-.hotmusic-list .active1{
+.hotmusic-list .active1 {
   color: #d43c33;
 }
-.hotmusic-list .music-na{
-    font-size: 1.3rem;
-    margin-bottom: 0.3rem;
+.hotmusic-list .music-na {
+  font-size: 1.3rem;
+  margin-bottom: 0.3rem;
 }
-.hotmusic-list .music-aut img{
-    width: 1rem;
+.hotmusic-list .music-aut img {
+  width: 1rem;
 }
-.hotmusic-list .music-aut{
-    color: #aaa;
+.hotmusic-list .music-aut {
+  color: #aaa;
 }
 
-.hot-music .hot-footer{
+.hot-music .hot-footer {
   text-align: center;
   color: #aaa;
   font-size: 1.2rem;

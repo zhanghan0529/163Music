@@ -46,14 +46,14 @@
     <div class="content">
         <div class="tabs">
             <ul class="tabs-list">
-                <li>推荐音乐</li>
-                <li>热歌榜</li>
-                <li>搜索</li>
+                <li class="active1"><span class="text">推荐音乐</span></li>
+                <li><span class="text">热歌榜</span></li>
+                <li><span class="text">搜索</span></li>
             </ul>
         </div>
         <div class="contents">
             <ul class="contents-list">
-                <li class="recomusic active">
+                <li class="recomusic">
                     <div class="reco-music">
                         <span>推荐歌单</span>
                         <ul class="clearfix">
@@ -223,7 +223,7 @@
                         <div class="app-message">网易公司版权所有©1997-2017 杭州乐读科技有限公司运营</div>
                     </div>
                 </li>
-                <li class="hot-music">
+                <li class="hot-music active">
                     <div class="hot-header">
                         <div class="hot-pic">
                             <img src="//oz73ituo2.bkt.clouddn.com/hot.png" alt="">
@@ -297,11 +297,20 @@
                         <span>查看完整榜单 ></span>
                     </div>
                 </li>
-                <li></li>
+                <li class="active">111</li>
             </ul>
         </div>
     </div>
-
+    <script src="src/js/jQuery/jquery.min.js"></script>
+    <script>
+        $(".tabs-list").on("click","li",function(){
+            $(this).addClass("active1").siblings().removeClass("active1");
+            // console.log($(this).index())
+            // console.log($(".contents-list > li").eq($(this).index()));
+            $(".contents-list > li").eq($(this).index()).removeClass("active")
+            .siblings().addClass("active");
+        })
+    </script>
 </body>
 
 </html>
