@@ -140,8 +140,7 @@ a {
     font-size: 1.1rem;
     margin-bottom: 1rem;
 }
-.list-tag .listtags{
-}
+
 .list-tag .listtags span{
     padding: 0.2rem 0;
     float: left;
@@ -157,6 +156,9 @@ a {
     border-radius: 10px;
     padding: 0.2rem 0.4rem;
 }
+.list-songs{
+  margin-bottom: 5.8rem;
+}
 .songslist{
     color: #666;
     background: #eeeff0;
@@ -170,12 +172,12 @@ a {
 }
 .tagmusic{
   display: inline-block;
-  float: left;
+  /* float: left; */
 }
 .songsname .listnum{
   display: inline;
   padding: 0.4rem 0;
-  float: left;
+  /* float: left; */
   margin: 0.5rem;
   font-size: 1.3rem;
   color: #aaa;

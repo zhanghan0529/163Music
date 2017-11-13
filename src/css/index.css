@@ -65,6 +65,10 @@ a {
 }
 .tabs {
   border-bottom: 1px solid #eee;
+  position: fixed;
+  width: 100%;
+  z-index: 3;
+  background: white;
 }
 
 .tabs .tabs-list {
@@ -88,8 +92,7 @@ a {
 .tabs .tabs-list .active1 {
   color: #d43c33;
 }
-.tabs .tabs-list .active1 .text {
-}
+
 .tabs .tabs-list .active1 .text::after {
   content: "";
   position: absolute;
@@ -101,6 +104,13 @@ a {
 }
 .active {
   display: none;
+}
+.contents .contents-list{
+  margin-top: 104px;
+}
+.nocollapse::before {
+    content: '';
+    display: table;
 }
 .recomusic .reco-music > span,
 .newmusic > span {
