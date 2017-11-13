@@ -7,28 +7,35 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title>
-
     <link rel="stylesheet" href="./src/css/songs.css">
 </head>
 
 <body>
     <div class="song-wrap">
-       
+        <img src="" alt="">
         <div class="pointer">
             <img src="//oz73ituo2.bkt.clouddn.com/needle.png" alt="">
         </div>
-        <!-- <img src="//oz73ituo2.bkt.clouddn.com/%E6%97%A0%E6%9D%A1%E4%BB%B6" alt="">
-            <div class="song-gp">
+        <div class="song-gp">
+            <img src="" alt="">
             <div class="circle">
-                <img src="" alt="">
+                <div class="btn">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-bofang"></use>
+                    </svg>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-zanting"></use>
+                    </svg>
+                </div>
+                <!-- <img src="" alt=""> -->
             </div>
         </div>
         <div class="song-lyrics">
-            <span class="song-name">小半-</span>
-            <span class="song-author">陈粒</span>
+            <!--<span class="song-name">小半-</span>
+            <span class="song-author">陈粒</span>-->
             <div class="lyrices">
                 <ul>
-                    <li>左顾右盼不自然的暗自喜欢</li>
+                    <!-- <li>左顾右盼不自然的暗自喜欢</li>
                     <li>偷偷搭讪总没完地坐立难安</li>
                     <li>试探说晚安 多空泛又心酸</li>
                     <li>试探说晚安 多空泛又心酸</li>
@@ -37,10 +44,11 @@
                     <li>试探说晚安 多空泛又心酸</li>
                     <li>试探说晚安 多空泛又心酸</li>
                     <li>试探说晚安 多空泛又心酸</li>
-                    <li>试探说晚安 多空泛又心酸</li> 
+                    <li>试探说晚安 多空泛又心酸</li>  -->
                 </ul>
             </div>
-        </div> -->
+        </div>
+        <audio src="" autoplay></audio>
         <div class="more-aciton">
             <a href="" class="open">打开</a>
             <a href="" class="loaded">下载</a>
@@ -48,18 +56,13 @@
 
     </div>
     <script src="//cdn1.lncld.net/static/js/3.3.1/av-min.js"></script>
-    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="src/js/jQuery/jquery.min.js"></script>
+    <script src="//at.alicdn.com/t/font_421442_imysrilf2wpl23xr.js"></script>
     <script>
         var regx = /^\?[a-z]+\=/g;
         var songId = window.location.search.replace(regx, '');
         // console.log(songId);
         // console.log(window.location.search)
-        // var $audio = $("<audio loop='loop'></audio>");
-        // $audio.attr({
-        //     src: "//oz73ituo2.bkt.clouddn.com/%E5%B0%8F%E5%8D%8A.mp3",
-        //     autoplay: 'autoplay'
-        // });
-        // $audio.append("body")
         var APP_ID = 'S1iaURCy2FgNQ1kbgbav6H88-gzGzoHsz';
         var APP_KEY = '6SwXnYDoVhaycC2vLBwJNc9D';
         var songUrl;
@@ -76,43 +79,45 @@
         //     imgUrl: "http://oz73ituo2.bkt.clouddn.com/%E6%99%B4%E5%A4%A9"
         // })//设置属性
         var query = new AV.Query('Song');
+        // var $audio = $("<audio autoplay>")
         query.get(songId).then(function (results) {
             //  console.log(results.attributes)
             var songAttr = results.attributes;
+            $(".song-wrap>img").attr("src", songAttr.imgUrl);
             appendSong(songAttr);
-            var $audio = $("<audio autoplay>")
-            $audio.attr("src", songAttr.url)
-            $audio.append("body");
-
+            // $("audio").attr("src", songAttr.url)
+            // $audio.append("body");
+         
         }, function (error) {
             alert("获取歌曲失败~");
         });
+        // $(".icon").on("click", function () {
+        //     console.log($(this))
+        //     $(this).attr("display", "none")
+        //         .siblings().attr("display", "block");
+        //         $("audio")[0].pause();
+        // })
+
+        $(".icon .icon1").on("click", function () {
+            console.log($(this))
+            $(this).addClass("active");
+            // $(".icon2").removeClass("active");
+        })
         function appendSong(songMes) {
             var html = '';
+            var html2 = '';
             html += "<img src='" + songMes.imgUrl + "' alt=''>";
-            html += "<div class='song-gp'>";
-            html += "<div class='circle'>";
-            html += " <img src='" + songMes.imgUrl + "'alt=''>";
-            html += "</div></div>";
-            html += "<div class='song-lyrics'>";
-            html += "<span class='song-name'>" + songMes.name + " - </span>";
-            html += "<span class='song-author'>" + songMes.singer + "</span>";
-            html += "<div class='lyrices'><ul>";
-            html += "</ul></div></div>";
-            $(".pointer").after(html);
+            html2 += "<span class='song-name'>" + songMes.name + " - </span>";
+            html2 += "<span class='song-author'>" + songMes.singer + "</span>";
+            $(".circle").append(html);
+            $(".lyrices").before(html2);
         }
-
-        // <div class="song-gp">
-        //     
-        //         <img src="" alt="">
-        //     </div>
-        //     </div>
-        //     <div class="song-lyrics">
+        // <!-- <div class="song-lyrics" >
         //         <span class="song-name">小半-</span>
         //         <span class="song-author">陈粒</span>
         //         <div class="lyrices">
         //             <ul>
-        //                 <!-- <li>左顾右盼不自然的暗自喜欢</li>
+        //                 <li>左顾右盼不自然的暗自喜欢</li>
         //                 <li>偷偷搭讪总没完地坐立难安</li>
         //                 <li>试探说晚安 多空泛又心酸</li>
         //                 <li>试探说晚安 多空泛又心酸</li>
@@ -121,10 +126,11 @@
         //                 <li>试探说晚安 多空泛又心酸</li>
         //                 <li>试探说晚安 多空泛又心酸</li>
         //                 <li>试探说晚安 多空泛又心酸</li>
-        //                 <li>试探说晚安 多空泛又心酸</li> -->
-        //         </ul>
+        //                 <li>试探说晚安 多空泛又心酸</li>
+        //             </ul>
         //         </div>
-        //     </div>
+        // </div > -->
+        // <div class="song-gp">
     </script>
 </body>
 
