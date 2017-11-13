@@ -80,9 +80,9 @@
             //  console.log(results.attributes)
             var songAttr = results.attributes;
             appendSong(songAttr);
-            var $video = $("<video autoplay>")
-            $video.attr("src", songAttr.url)
-            $video.append("body");
+            var $audio = $("<audio autoplay>")
+            $audio.attr("src", songAttr.url)
+            $audio.append("body");
 
         }, function (error) {
             alert("获取歌曲失败~");
