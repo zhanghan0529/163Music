@@ -20,5 +20,8 @@
     "leancloud-realtime": "^3.5.7",
     "leancloud-storage": "^3.3.1",
     "normalize.css": "^7.0.0"
+  },
+  "devDependencies": {
+    "loaders.css": "^0.1.2"
   }
 }

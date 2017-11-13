@@ -50,14 +50,12 @@ ul{
     }
 }
 
-.song-wrap::before {
+.song-wrap>img {
   position: absolute;
-  content: "";
   height: 100%;
   width: 100%;
   top: 0;
   left: 0;
-  background: transparent url(//oz73ituo2.bkt.clouddn.com/1) no-repeat center;
   background-size: cover;
   filter: blur(30px) brightness(0.5);
   z-index: -1;
