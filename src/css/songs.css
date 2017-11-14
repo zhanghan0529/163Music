@@ -98,8 +98,8 @@ ul {
     no-repeat center;
   background-size: cover;
   z-index: 1;
+  -webkit-animation: rotate 15s infinite linear;
   animation: rotate 15s infinite linear;
-  
 }
 .song-gp .circle > img {
   position: absolute;
@@ -111,6 +111,7 @@ ul {
   margin-top: -35%;
   margin-left: -35%;
   z-index: -1;
+  -webkit-animation: rotate 15s infinite linear;
   animation: rotate 15s infinite linear;
 }
 .song-gp .circle .playing{
