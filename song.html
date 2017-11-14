@@ -40,7 +40,7 @@
             <span class="song-author">陈粒</span>-->
             <div class="lyrices">
                 <ul>
-                    <!-- <li>左顾右盼不自然的暗自喜欢</li>
+                    <!--<li>左顾右盼不自然的暗自喜欢</li>
                     <li>偷偷搭讪总没完地坐立难安</li>
                     <li>试探说晚安 多空泛又心酸</li>
                     <li>试探说晚安 多空泛又心酸</li>
@@ -53,7 +53,7 @@
                 </ul>
             </div>
         </div>
-        <audio src=""></audio>
+        <!-- <audio src=""></audio> -->
         <div class="more-aciton">
             <a href="" class="open">打开</a>
             <a href="" class="loaded">下载</a>
@@ -61,7 +61,7 @@
 
     </div>
     <script src="//cdn1.lncld.net/static/js/3.3.1/av-min.js"></script>
-    <script src="src/js/jQuery/jquery.min.js"></script>
+    <script src="/src/js/jQuery/jquery.min.js"></script>
     <script src="//at.alicdn.com/t/font_421442_imysrilf2wpl23xr.js"></script>
     <script>
         var regx = /^\?[a-z]+\=/g;
@@ -84,15 +84,149 @@
         //     imgUrl: "http://oz73ituo2.bkt.clouddn.com/%E6%99%B4%E5%A4%A9"
         // })//设置属性
         var query = new AV.Query('Song');
-        // var $audio = $("<audio autoplay>")
         query.get(songId).then(function (results) {
             //  console.log(results.attributes)
             var songAttr = results.attributes;
             $(".song-wrap>img").attr("src", songAttr.imgUrl);
             $(".song-gp .circle>img").attr("src", songAttr.imgUrl);
             appendSong(songAttr);
-            $("audio").attr("src", songAttr.url)
+            // $("audio").attr("src", songAttr.url)
+            // $("audio")[0].play();
             // $audio.append("body");
+            var audio = document.createElement("audio")
+            audio.src = songAttr.url;
+            // audio1.play()
+            var lyrics = songAttr.lyrics.split("\n")
+            for (var i = 0; i < lyrics.length; i++) {
+                var lyric = lyrics[i].split("]");
+                var lyTime = lyric[0].substring(1);
+                var lyri = lyric[1];
+                var lyMin = +lyTime.split(":")[0];
+                var lySec = +lyTime.split(":")[1];
+                var sumTime = lyMin * 60 + lySec;
+                appendLyrics(lyri, sumTime);
+            }
+            //  console.log(arr);
+            setInterval(function () {
+                var current = audio.currentTime;
+                var $line = $(".lyrices > ul > li");
+                for (var i = 0; i < $line.length; i++) {
+                    var $lineTime = $line.eq(i).attr("data-time");
+                    var $lineNextTime = $line.eq(i + 1).attr("data-time");
+                    if (i === $line.length - 1) {
+                        showLyrics($line.eq(i), i)
+                        
+                    } else if (current >= $lineTime && current < $lineNextTime) {
+                        console.log($line.eq(i).offset().top);
+                        showLyrics($line.eq(i), i)
+                        break;
+                    }
+                }
+            }, 500)
+            function showLyrics(e, i) {
+                var lineD = e.offset().top;
+                var wrapH = $(".lyrices > ul").offset().top;
+                var lineH = $(".lyrices > ul > li").outerHeight(true);
+                var drop = lineD - wrapH - lineH;
+                console.log(i);
+                $(".lyrices > ul").css("top", lineH);
+                // console.log(lineH)
+                if (i === 0) {
+                    $(".lyrices > ul").css("top",0);
+                    e.addClass("active1")
+                } else {
+                    e.addClass("active1").siblings().removeClass("active1");
+                    $(".lyrices > ul").css("top", "-" + drop + "px");
+                    // console.log(drop)
+                }
+
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // var arr = [];
+            // for (var i = 0; i < lyrics.length; i++) {
+            //     var lyrics1 = lyrics[i].split("]");
+            //     appendLyrics(lyrics1[1]);
+            //     var lyrics2 = lyrics1[0].substring(1);
+            //     var lyrics3 = lyrics2.split(":")
+            //     var min = Number(lyrics3[0]);
+            //     var sec = Number(lyrics3[1]);
+            //     var sumTime = min * 60 + sec;
+            //     arr.push({
+            //         sumTime: sumTime,
+            //         lyric: lyrics1[1]
+            //     })
+            // }
+            // console.log(arr)
+            // setInterval(function () {
+            //     var current = audio1.currentTime;
+            //     var $lines = $(".lyrices > ul > li");
+            //     // console.log($lines)
+            //     for (var i = 0; i < arr.length; i++) {
+            //         if (i === arr.length - 1) {
+            //             console.log(arr[i].lyric)
+            //         } else if (arr[i].sumTime <= current && arr[i + 1].sumTime > current) {
+            //             whichLine = $lines.eq(i);
+            //             break;
+            //         }
+            //     }
+            //     if (whichLine) {
+            //         var top = whichLine.offset().top;
+            //         var linesTop = $(".lyrices > ul").offset().top;
+            //         var delta = top - linesTop-24;
+            //         $(".lyrices > ul").css("transform", "translateY(-"+delta+"px)");
+            //     }
+            //     // console.log(audio1.currentTime);
+            // }, 200)
+
+            $(".btn1").on("click", function () {
+                // console.log($(this))
+                $(this).addClass("active").siblings().removeClass("active");
+                audio.play();
+                $(".song-gp .circle > img").removeClass("pausing");
+                $(".song-gp .circle > span").removeClass("pausing");
+            })
+            $(".btn2").on("click", function () {
+                $(this).addClass("active").siblings().removeClass("active");
+                audio.pause();
+                $(".song-gp .circle > span").addClass("pausing");
+                $(".song-gp .circle > img").addClass("pausing");
+            })
         }, function (error) {
             alert("获取歌曲失败~");
         });
@@ -102,20 +236,12 @@
         //         .siblings().attr("display", "block");
         // })
 
-        $(".btn1").on("click", function () {
-            // console.log($(this))
-            $(this).addClass("active").siblings().removeClass("active");
-            $("audio")[0].play();
-            $(".song-gp .circle > img").removeClass("pausing").addClass("playing");
-            $(".song-gp .circle > span").removeClass("pausing").addClass("playing");
-        })
-        $(".btn2").on("click", function () {
-            $(this).addClass("active").siblings().removeClass("active");
-            $("audio")[0].pause();
-            $(".song-gp .circle > span").addClass("pausing").removeClass("playing");
-            $(".song-gp .circle > img").addClass("pausing").removeClass("playing");
-        })
 
+        function appendLyrics(lyrics, time) {
+            var html = "";
+            html += "<li data-time =" + time + ">" + lyrics + "</li>"
+            $(".lyrices>ul").append(html);
+        }
         function appendSong(songMes) {
             var html = '';
             var html2 = '';

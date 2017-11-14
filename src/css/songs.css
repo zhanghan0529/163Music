@@ -127,8 +127,8 @@ ul {
   overflow: hidden;
   color: rgba(255, 255, 255, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.7);
-  font-size: 3rem;
-  padding: 2rem;
+  font-size: 2rem;
+  padding: 1rem;
   border-radius: 50%;
   position: absolute;
   top: 50%;
@@ -154,23 +154,31 @@ ul {
   color: #bbb;
 }
 .song-lyrics .lyrices {
-  height: 9.7rem;
-  /* margin: 0.5em; */
+  height: 7.9rem;
+  margin:1rem;
   overflow: hidden;
   position: relative;
-  margin: 1rem 0;
 }
 .song-lyrics ul {
   /* line-height: 2.5rem; */
   width: 80%;
-  padding: 0 4rem;
+  /* padding: 0 4rem; */
   position: absolute;
-  top: 0;
+  /* top: 2rem; */
   left: 50%;
-  transform: translate(-50%);
+  margin-left: -40%;
+  margin-bottom: 0.8rem;
+  transition: all 0.3s;
+  /* transform: translate(-50%); */
 }
 .song-lyrics ul > li {
-  margin: 1rem 0;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+.song-lyrics ul > .active1{
+  color:white;
+  opacity: 1;
+  transition: all 0.3s;
 }
 .more-aciton {
   position: absolute;
