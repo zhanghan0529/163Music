@@ -57,6 +57,7 @@ ul {
   top: 0;
   left: 0;
   background-size: cover;
+  -webkit-filter: blur(30px) brightness(0.5);
   filter: blur(30px) brightness(0.5);
   z-index: -1;
 }
