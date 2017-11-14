@@ -115,9 +115,11 @@ ul {
 }
 .song-gp .circle .playing{
   animation-play-state:running;
+  -webkit-animation-play-state:running;
 }
 .song-gp .circle .pausing{
   animation-play-state:paused;
+  -webkit-animation-play-state:paused;
 }
 .icon {
   width: 1em;
@@ -134,6 +136,7 @@ ul {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
   z-index: 5;
 }
 .song-gp .circle .active {
