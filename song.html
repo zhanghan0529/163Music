@@ -107,18 +107,28 @@
                 appendLyrics(lyri, sumTime);
             }
             //  console.log(arr);
+        //    audio.currentTime = 180
             setInterval(function () {
-                var current = audio.currentTime;
+                 var current = audio.currentTime;
+                // current = 200 ;
                 var $line = $(".lyrices > ul > li");
                 for (var i = 0; i < $line.length; i++) {
                     var $lineTime = $line.eq(i).attr("data-time");
                     var $lineNextTime = $line.eq(i + 1).attr("data-time");
+                    // current = 200;
                     if (i === $line.length - 1) {
-                        showLyrics($line.eq(i), i)
+                        //break;
+                        //  console.log($line.eq(i).offset().top);
+                        // var lineLh = $line.eq(i).offset().top
+                        //  $(".lyrices > ul").css("top", "-" + lineLh + "px");
+                        showLyrics($line.eq(i),i)
                     } else if (current >= $lineTime && current < $lineNextTime) {
-                        console.log($line.eq(i).offset().top);
+                        // console.log($line.eq(i).offset().top);
                         showLyrics($line.eq(i), i)
-                        break;
+                        // if (i + 1 === $line.length - 1) {
+                        //     showLyrics($line.eq(i + 1), i + 1)
+                        // }
+                        break;                    
                     }
                 }
             }, 500)
@@ -127,19 +137,17 @@
                 var wrapH = $(".lyrices > ul").offset().top;
                 var lineH = $(".lyrices > ul > li").outerHeight(true);
                 var drop = lineD - wrapH - lineH;
-                console.log(i);
+                // console.log(i);
                 $(".lyrices > ul").css("top", lineH);
                 // console.log(lineH)
                 if (i === 0) {
-                    $(".lyrices > ul").css("top",0);
+                    $(".lyrices > ul").css("top", 0);
                     e.addClass("active1")
                 } else {
                     e.addClass("active1").siblings().removeClass("active1");
                     $(".lyrices > ul").css("top", "-" + drop + "px");
                     // console.log(drop)
                 }
-
-
 
             }
 

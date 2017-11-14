@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>首页</title>
     <link rel="stylesheet" href="./src/css/index.css">
-    <script src="//at.alicdn.com/t/font_407510_0dloeh8y4gggy14i.js"></script>
+
 </head>
 
 <body>
@@ -52,7 +52,7 @@
                 <li>
                     <span class="text">热歌榜</span>
                 </li>
-                <li>
+                <li class="">
                     <span class="text">搜索</span>
                 </li>
             </ul>
@@ -229,9 +229,15 @@
                             <div class="hotupdate">更新日期：11月12日</div>
                         </div>
                     </div>
+                    <div class="ball-beat">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
                     <ul class="hotmusic-list">
-                        <li class="clearfix">
-                            <a href="" class="clearfix">
+
+                        <!-- <li class="clearfix">
+                            <a href="./song.html?id=" class="clearfix">
                                 <div class="listnum active1">01</div>
                                 <div class="playbtn clearfix">
                                     <img src="http://oz73ituo2.bkt.clouddn.com/play1.png" alt="">
@@ -276,7 +282,7 @@
                             </a>
                         </li>
                         <li class="">
-                            <a href="" class="clearfix">
+                            <a href="song.html?id=" class="clearfix">
                                 <div class="listnum">04</div>
                                 <div class="playbtn clearfix">
                                     <img src="http://oz73ituo2.bkt.clouddn.com/play1.png" alt="">
@@ -289,21 +295,85 @@
                                     </div>
                                 </div>
                             </a>
-                        </li>
-
+                        </li> -->
                     </ul>
                     <div class="hot-footer">
                         <span>查看完整榜单 ></span>
                     </div>
                 </li>
-                <li class="active">
+                <li class="search-song  active">
+                    <div class="search">
+                        <div class="search-cont clearfix">
+                            <svg class="icon icon3" aria-hidden="true">
+                                <use xlink:href="#icon-sousuo"></use>
+                            </svg>
+                            <span class="seachc">
+                                <svg class="icon icon4" aria-hidden="true">
+                                    <use xlink:href="#icon-guanbi-copy"></use>
+                                </svg>
+                            </span>
+                            <div class="searchcont">
+                                <input class="search-conts" type="text" placeholder="搜索的歌曲、歌手、专辑~">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hotsearch">
+                        <div class="searchresults">
+                            <ul class="resultList">
+                                <li class="clearfix">
+                                    <a href="">
+                                        <svg class="icon icon3" aria-hidden="true">
+                                            <use xlink:href="#icon-sousuo"></use>
+                                        </svg>
+                                        <div class="resCont">1111</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <span>热门搜索</span>
+                        <ul class="hottags">
+                            <li>
+                                <a href="">陈奕迅</a>
+                            </li>
+                            <li>
+                                <a href="">周杰伦</a>
+                            </li>
+                            <li>
+                                <a href="">薛之谦</a>
+                            </li>
+                            <li>
+                                <a href="">周杰伦</a>
+                            </li>
+                        </ul>
+                        <div class="historysh">
+                            <ul class="hissh">
+                                <li class="clearfix">
+                                    <a href="">
+                                        <svg class="icon5 icon6" aria-hidden="true">
+                                            <use xlink:href="#icon-zhong"></use>
+                                        </svg>
+                                        <div class="hiscont clearfix">
+                                            <span>11111</span>
+                                            <span class="hisclose">
+                                                <svg class="icon5 icon7" aria-hidden="true">
+                                                    <use xlink:href="#icon-cha"></use>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </li>
             </ul>
         </div>
     </div>
     <script src="src/js/jQuery/jquery.min.js"></script>
+    <script src="//at.alicdn.com/t/font_407510_biev19ley3prdx6r.js"></script>
     <script src="//cdn1.lncld.net/static/js/3.3.1/av-min.js"></script>
-    <script src="//at.alicdn.com/t/font_421442_imysrilf2wpl23xr.js"></script>
+
     <script>
         $(".tabs-list").on("click", "li", function () {
             $(this).addClass("active1").siblings().removeClass("active1");
@@ -312,34 +382,52 @@
             $(".contents-list > li").eq($(this).index()).removeClass("active")
                 .siblings().addClass("active");
         })
-    </script>
-
-    <script>
         var APP_ID = 'S1iaURCy2FgNQ1kbgbav6H88-gzGzoHsz';
         var APP_KEY = '6SwXnYDoVhaycC2vLBwJNc9D';
+        var hotLoad = false;
         AV.init({
             appId: APP_ID,
             appKey: APP_KEY,
         });
         var query = new AV.Query('Song');
+        var query1 = new AV.Query('Song');
         query.find().then(function (results) {
-            $(".ball-beat").remove();
+            $(".newmusic .ball-beat").remove();
             for (var i = 0; i < results.length; i++) {
                 var results1 = results[i]
                 var songAttr = results1.attributes;
-                console.log(results1.id)
+                appendReco(results1, songAttr);
+                // console.log(results1.id)
                 // console.log(songAttr.singer)
-                appendReco(results1,songAttr);
                 // appendHot(songAttr);
                 // $(".hotmusicList").append(appendHtml);
             }
         }, function (error) {
-            alert("出粗了！")
+            alert("出错了！")
         });
-        function appendReco(Id,songMessage) {
+        query1.equalTo('hot', true);
+        query1.find().then(function (results) {
+            $(".hot-music .ball-beat").remove();
+            var listNum = 1;
+            for (var i = 0; i < results.length; i++) {
+                var results1 = results[i]
+                var songAttr = results1.attributes;
+                console.log(songAttr)
+                appendHot(results1, songAttr, listNum);
+                listNum++;
+                //     // console.log(results1.id)
+                //     // console.log(songAttr.singer)
+
+                //     //     // appendHot(songAttr);
+                //     //     // $(".hotmusicList").append(appendHtml);
+            }
+        }, function (error) {
+            alert("出错了！")
+        });
+        function appendReco(Id, songMessage) {
             var html = '';
             html += "<li>";
-            html += "<a href=./song.html?id="+Id.id+">";
+            html += "<a href=./song.html?id=" + Id.id + ">";
             html += "<div class='playbtn clearfix'>";
             html += " <img src='http://oz73ituo2.bkt.clouddn.com/play1.png' alt=''>";
             html += "</div>";
@@ -351,6 +439,62 @@
             $(".newmusic-in").append(html);
         }
 
+        function appendHot(Id, songMessage, num) {
+            var html = ''
+            if (num < 4) {
+                html += "<li class='clearfix'>";
+                html += "<a class='clearfix' href=./song.html?id=" + Id.id + ">";
+                html += "<div class='listnum active1'>0" + num + "</div>";
+                html += "<div class='playbtn clearfix'>";
+                html += "<img src='http://oz73ituo2.bkt.clouddn.com/play1.png' alt=''></div>";
+                html += "<div class='hotmusic'>";
+                html += "<div class='music-na'>" + songMessage.name + "</div>";
+                html += "<div class='music-aut'>";
+                html += "<img src='http://oz73ituo2.bkt.clouddn.com/sq.png' alt=''>";
+                html += "<span>" + " " + songMessage.singer + "-" + songMessage.album + "</span>";
+                html += "</div></div></a></li>";
+            } else if (3 < num && num < 10) {
+                html += "<li class='clearfix'>";
+                html += "<a class='clearfix' href=./song.html?id=" + Id.id + ">";
+                html += "<div class='listnum'>0" + num + "</div>";
+                html += "<div class='playbtn clearfix'>";
+                html += "<img src='http://oz73ituo2.bkt.clouddn.com/play1.png' alt=''></div>";
+                html += "<div class='hotmusic'>";
+                html += "<div class='music-na'>" + songMessage.name + "</div>";
+                html += "<div class='music-aut'>";
+                html += "<img src='http://oz73ituo2.bkt.clouddn.com/sq.png' alt=''>";
+                html += "<span>" + " " + songMessage.singer + "-" + songMessage.album + "</span>";
+                html += "</div></div></a></li>";
+            } else{
+                html += "<li class='clearfix'>";
+                html += "<a class='clearfix' href=./song.html?id=" + Id.id + ">";
+                html += "<div class='listnum'>" + num + "</div>";
+                html += "<div class='playbtn clearfix'>";
+                html += "<img src='http://oz73ituo2.bkt.clouddn.com/play1.png' alt=''></div>";
+                html += "<div class='hotmusic'>";
+                html += "<div class='music-na'>" + songMessage.name + "</div>";
+                html += "<div class='music-aut'>";
+                html += "<img src='http://oz73ituo2.bkt.clouddn.com/sq.png' alt=''>";
+                html += "<span>" + " " + songMessage.singer + "-" + songMessage.album + "</span>";
+                html += "</div></div></a></li>";
+            }
+            $(".hotmusic-list").append(html);
+        }
+        // <li class="">
+        //     
+        //         <div class="listnum">04</div>
+        //         <div class="playbtn clearfix">
+        //             <img src="http://oz73ituo2.bkt.clouddn.com/play1.png" alt="">
+        //                         </div>
+        //             <div class="hotmusic">
+        //                 <div class="music-na">可以了</div>
+        //                 <div class="music-aut">
+        //                     <img src="http://oz73ituo2.bkt.clouddn.com/sq.png" alt="">
+        //                         <span> 陈奕迅 - 米·闪</span>
+        //                             </div>
+        //                 </div>
+        //                     </a>
+        //                 </li>
     </script>
 </body>
 
