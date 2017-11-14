@@ -383,13 +383,19 @@ a {
 .search-song .icon3 {
   float: left;
 }
-.search-song .icon4 {
+span.seachc {
   float: right;
   display: none;
 }
+/* .search-song .icon4 {
+  /* float: right;
+  display: none; 
+} */
+
 .hotsearch {
   padding: 1rem 0.8rem;
   position: relative;
+  height: 100%;
 }
 .historysh {
   padding: 0 0.8rem 1rem 0.8rem;
@@ -431,11 +437,18 @@ a {
   border-bottom: 1px solid #eee;
 }
 
-.hiscont .icon7 {
-  float: right;
-}
 .historysh .hissh {
   font-size: 1.2rem;
+}
+.hissh > li {
+  position: relative;
+}
+.hisclose {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -0.8rem;
+  z-index: -1;
 }
 
 .hotsearch .searchresults {
@@ -447,9 +460,21 @@ a {
   background: white;
   font-size: 1.2rem;
   display: none;
+  z-index: 1;
 }
+
 .searchresults .resultList {
-  padding: 1rem 0 0 1rem;
+  padding: 0 0 0 1rem;
+  background: white;
+}
+.searchInput {
+  padding: 1rem 1rem 0 1rem;
+}
+.inputNow {
+  font-size: 1.3rem;
+  color: #507daf;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
 }
 .resultList svg {
   padding: 1rem 0;
