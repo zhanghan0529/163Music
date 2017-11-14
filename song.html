@@ -61,7 +61,7 @@
 
     </div>
     <script src="//cdn1.lncld.net/static/js/3.3.1/av-min.js"></script>
-    <script src="/src/js/jQuery/jquery.min.js"></script>
+    <script src="./src/js/jQuery/jquery.min.js"></script>
     <script src="//at.alicdn.com/t/font_421442_imysrilf2wpl23xr.js"></script>
     <script>
         var regx = /^\?[a-z]+\=/g;
@@ -115,7 +115,6 @@
                     var $lineNextTime = $line.eq(i + 1).attr("data-time");
                     if (i === $line.length - 1) {
                         showLyrics($line.eq(i), i)
-                        
                     } else if (current >= $lineTime && current < $lineNextTime) {
                         console.log($line.eq(i).offset().top);
                         showLyrics($line.eq(i), i)
