@@ -87,9 +87,7 @@ a {
   -webkit-animation-delay: -0.35s !important;
   animation-delay: -0.35s !important;
 }
-* {
-  transition: all 0.3s;
-}
+
 .header {
   height: 64px;
   background: #d43c33;
@@ -225,7 +223,7 @@ a {
   color: black;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
+  /* display: -webkit-box; */
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
