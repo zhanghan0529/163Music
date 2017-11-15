@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="src/css/songlist.css">
-    <title>Document</title>
+    <title>推荐列表</title>
 </head>
 
 <body>
@@ -89,8 +89,8 @@
         var query = new AV.Query("SongList");
         var regx = /^\?+[a-z]+\=/;
         var listId = window.location.search.replace(regx, "");
-        var loaded = false;
         query.get(listId).then(function (results) {
+
             var listMes = results.attributes;
             var songI = listMes.songId;
             appendList(listMes);
@@ -100,6 +100,7 @@
                 $(".list-songs .ball-beat").remove();
                 var query1 = new AV.Query("Song");
                 query1.get(songL[i]).then(function (results) {
+                    $(".songsname").attr("data-load", "yes");
                     var songMes = results.attributes;
                     var songId = results.id
                     appendSong(songId, songMes, Num);

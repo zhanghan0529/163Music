@@ -87,7 +87,9 @@ a {
   -webkit-animation-delay: -0.35s !important;
   animation-delay: -0.35s !important;
 }
-
+* {
+  transition: all 0.3s;
+}
 .header {
   height: 64px;
   background: #d43c33;
