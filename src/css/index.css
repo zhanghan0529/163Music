@@ -45,13 +45,13 @@ a {
   50% {
     opacity: 0.2;
     -webkit-transform: scale(0.75);
-    transform: scale(0.75);
+    -webkit-transform: scale(0.75);
   }
 
   100% {
     opacity: 1;
     -webkit-transform: scale(1);
-    transform: scale(1);
+    -webkit-transform: scale(1);
   }
 }
 
@@ -165,6 +165,9 @@ a {
   margin: 12px 0;
   padding: 0 0 0 1rem;
   border-left: 2px solid #d43c33;
+}
+.reco-music > ul{
+  white-space: nowrap;
 }
 .reco-music > ul > li {
   display: inline-block;

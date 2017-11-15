@@ -61,9 +61,14 @@
                 <li class="recomusic">
                     <div class="reco-music">
                         <span>推荐歌单</span>
-                        <ul class="clearfix">
-                            <li>
-                                <a href="">
+                        <div class="ball-beat">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <ul class="musicList clearfix">
+                            <!-- <li>
+                                <a href="./songlist.html">
                                     <div class="listennum">
                                         <div class="listennum-in clearfix">
                                             <svg class="icon" aria-hidden="true">
@@ -157,7 +162,7 @@
                                     </div>
                                     <span>动听的Eason歌大合集</span>
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                     <div class="newmusic">
@@ -234,7 +239,6 @@
                         <div></div>
                     </div>
                     <ul class="hotmusic-list">
-
                         <!-- <li class="clearfix">
                             <a href="./song.html?id=" class="clearfix">
                                 <div class="listnum active1">01</div>
@@ -392,6 +396,50 @@
             appId: APP_ID,
             appKey: APP_KEY,
         });
+
+        var query0 = new AV.Query('SongList');
+        query0.find().then(function (results) {
+            $(".reco-music .ball-beat").remove();
+            for (var i = 0; i < results.length; i++) {
+                var results1 = results[i];
+                var listAttr = results1.attributes;
+                appendList(results1, listAttr);
+            }
+        })
+
+        function appendList(listId, list) {
+            var html = "";
+            html += "<li><a href='./songlist.html?id=" + listId.id + "'>";
+            html += "<div class='listennum'>";
+            html += "<div class='listennum-in clearfix'>";
+            html += " <svg class='icon' aria-hidden='true'>";
+            html += "<use xlink: href='#icon-erji'></use></svg>";
+            html += "<p>" + list.ListenNum + "万</p>";
+            html += "</div></div>";
+            html += "<div class='music-img'>";
+            html += "<img src=" + list.imgUrl + " alt=''>";
+            html += "<span>" + list.title + "</span></a></li>";
+            $(".musicList").append(html);
+        }
+        // <li>
+        //     <a href="./songlist.html">
+        //         <div class="listennum">
+        //             <div class="listennum-in clearfix">
+        //                 <svg class="icon" aria-hidden="true">
+        //                     <use xlink: href="#icon-erji"></use>
+        //                                     </svg>
+        //             <p>101.1万</p>
+        //         </div>
+        //                            </div>
+        //     <div class="music-img">
+        //         <img src="http://oz73ituo2.bkt.clouddn.com/%E5%8F%AF%E4%BB%A5%E4%BA%86" alt="">
+        //                             </div>
+        //         <span>动听的Eason歌大合集</span>
+        //                         </a>
+        // </li>
+
+
+
         var query = new AV.Query('Song');
         var query1 = new AV.Query('Song');
         query.find().then(function (results) {
@@ -486,7 +534,7 @@
 
         var clock = null;
         // console.log($(".hisclose"))
-        $(".hissh").on("click",".hisclose",function () {
+        $(".hissh").on("click", ".hisclose", function () {
             console.log($(this))
             $(this).parent().remove();
         })
@@ -510,11 +558,11 @@
                 var query5 = AV.Query.or(Singer, Name, Album);
                 // query.equalTo('album', text);
                 // query.equalTo('singer', text);
-                if (text ==="") {
+                if (text === "") {
                     $("span.seachc").css("display", "none");
                     $(".searchresults").css("display", "none");
                     return;
-                }else{
+                } else {
                     $("span.seachc").css("display", "inline");
                 }
                 $(".inputNow>span").text(text);
@@ -535,6 +583,7 @@
                         noResult();
                     } else if (results.length > 0) {
                         console.log(results)
+                        appendHis(text)
                         for (var i = 0; i < results.length; i++) {
                             var results1 = results[i]
                             var songAttr = results1.attributes;
@@ -547,7 +596,7 @@
             }, 400)
         })
 
-        function noResult(){
+        function noResult() {
             var html = "";
             html += "<li class='clearfix'>";
             html += "<svg class='icon icon3' aria-hidden='true'>";

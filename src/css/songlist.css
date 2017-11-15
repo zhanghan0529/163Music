@@ -41,6 +41,39 @@ a {
     font-size: 16px !important;
   }
 }
+@keyframes ball-beat {
+  50% {
+    opacity: 0.2;
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+.ball-beat {
+  width: 20%;
+  margin: 2rem auto;
+}
+.ball-beat > div {
+  background-color: #d43c33;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  margin: 2px;
+  display: inline-block;
+  -webkit-animation: ball-beat 0.7s 0s infinite linear;
+  animation: ball-beat 0.7s 0s infinite linear;
+}
+
+.ball-beat > div:nth-child(2n-1) {
+  -webkit-animation-delay: -0.35s !important;
+  animation-delay: -0.35s !important;
+}
+
 .list-header {
   width: 100%;
   height: 14rem;
@@ -50,18 +83,19 @@ a {
   z-index: 1;
   overflow: hidden;
 }
-.list-header::before {
+.list-header .bac img {
   content: "";
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
   position: absolute;
-  background: transparent
+  /* background: transparent
     url(//oz73ituo2.bkt.clouddn.com/%E5%8F%AF%E4%BB%A5%E4%BA%86) no-repeat
     center;
-  background-size: cover;
+  background-size: cover; */
   filter: blur(10px);
+  z-index: -1;
 }
 .list-header .listpic {
   display: inline-block;
@@ -165,10 +199,9 @@ a {
     padding: 0.4rem 1rem;
 }
 .songsname li {
-    padding: 0.3rem 0 ;
     border-bottom: 1px solid #eee;
     position: relative;
-    margin: 0 0.5rem;
+    margin: 0.5rem;  
 }
 .tagmusic{
   display: inline-block;
@@ -177,7 +210,7 @@ a {
 .songsname .listnum{
   display: inline;
   padding: 0.4rem 0;
-  /* float: left; */
+  float: left;
   margin: 0.5rem;
   font-size: 1.3rem;
   color: #aaa;

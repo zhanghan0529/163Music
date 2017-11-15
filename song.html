@@ -55,8 +55,8 @@
         </div>
         <!-- <audio src=""></audio> -->
         <div class="more-aciton">
-            <a href="" class="open">打开</a>
-            <a href="" class="loaded">下载</a>
+            <a href="javascript:void(0)" class="open">打开</a>
+            <a href="/index.html" class="loaded">返回</a>
         </div>
 
     </div>
@@ -75,12 +75,14 @@
             appId: APP_ID,
             appKey: APP_KEY,
         });
-        // var songObject = AV.Object.extend("Song");//创建一个新的对象
+        // var songObject = AV.Object.extend("SongList");//创建一个新的对象
         // var songObject1 = new songObject();//创建一个新到对象实例
         // songObject1.set({
-        //     name: "当你",
-        //     singer: "林俊杰",
+        //     title: "当你",
+        //     name: "zhanghan",
+        //     listId: []
         // })//设置属性
+        //  var objects = [songObject1]
         //  AV.Object.saveAll(objects);
 
         var query = new AV.Query('Song');
@@ -106,12 +108,18 @@
                 var sumTime = lyMin * 60 + lySec;
                 appendLyrics(lyri, sumTime);
             }
+            
             //  console.log(arr);
-            //    audio.currentTime = 180
+            //    audio.currentTime = 215
             setInterval(function () {
                 var current = audio.currentTime;
                 // current = 200 ;
                 var $line = $(".lyrices > ul > li");
+                if (audio.duration === current ){
+                    $(".song-gp .circle > span").addClass("pausing");
+                    $(".song-gp .circle > img").addClass("pausing");
+                    $(".btn2").addClass("active").siblings().removeClass("active");
+                }
                 for (var i = 0; i < $line.length; i++) {
                     var $lineTime = $line.eq(i).attr("data-time");
                     var $lineNextTime = $line.eq(i + 1).attr("data-time");
@@ -132,6 +140,7 @@
                     }
                 }
             }, 500)
+
             function showLyrics(e, i) {
                 var lineD = e.offset().top;
                 var wrapH = $(".lyrices > ul").offset().top;
@@ -149,76 +158,6 @@
                     // console.log(drop)
                 }
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            // var arr = [];
-            // for (var i = 0; i < lyrics.length; i++) {
-            //     var lyrics1 = lyrics[i].split("]");
-            //     appendLyrics(lyrics1[1]);
-            //     var lyrics2 = lyrics1[0].substring(1);
-            //     var lyrics3 = lyrics2.split(":")
-            //     var min = Number(lyrics3[0]);
-            //     var sec = Number(lyrics3[1]);
-            //     var sumTime = min * 60 + sec;
-            //     arr.push({
-            //         sumTime: sumTime,
-            //         lyric: lyrics1[1]
-            //     })
-            // }
-            // console.log(arr)
-            // setInterval(function () {
-            //     var current = audio1.currentTime;
-            //     var $lines = $(".lyrices > ul > li");
-            //     // console.log($lines)
-            //     for (var i = 0; i < arr.length; i++) {
-            //         if (i === arr.length - 1) {
-            //             console.log(arr[i].lyric)
-            //         } else if (arr[i].sumTime <= current && arr[i + 1].sumTime > current) {
-            //             whichLine = $lines.eq(i);
-            //             break;
-            //         }
-            //     }
-            //     if (whichLine) {
-            //         var top = whichLine.offset().top;
-            //         var linesTop = $(".lyrices > ul").offset().top;
-            //         var delta = top - linesTop-24;
-            //         $(".lyrices > ul").css("transform", "translateY(-"+delta+"px)");
-            //     }
-            //     // console.log(audio1.currentTime);
-            // }, 200)
 
             $(".btn1").on("click", function () {
                 // console.log($(this))
@@ -241,8 +180,6 @@
         //     $(this).attr("display", "none")
         //         .siblings().attr("display", "block");
         // })
-
-
         function appendLyrics(lyrics, time) {
             var html = "";
             html += "<li data-time =" + time + ">" + lyrics + "</li>"
