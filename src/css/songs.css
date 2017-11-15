@@ -75,6 +75,7 @@ ul {
   top: 0;
   left: 50%;
   transform: translate(-20%);
+  -webkit-transform: translate(-20%);
   z-index: 1;
 }
 .song-gp {
