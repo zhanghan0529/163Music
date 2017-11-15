@@ -353,7 +353,7 @@
                         </ul>
                         <div class="historysh">
                             <ul class="hissh">
-                                <!-- <li class="clearfix">
+                                <li class="clearfix">
                                     <a href="">
                                         <svg class="icon5 icon6" aria-hidden="true">
                                             <use xlink:href="#icon-zhong"></use>
@@ -361,13 +361,13 @@
                                         <div class="hiscont clearfix">
                                             <span>11111</span>
                                         </div>
-                                        <span class="hisclose">
-                                            <svg class="icon5 icon7" aria-hidden="true">
-                                                <use xlink:href="#icon-cha"></use>
-                                            </svg>
-                                        </span>
                                     </a>
-                                </li> -->
+                                    <span class="hisclose">
+                                        <svg class="icon5 icon7" aria-hidden="true">
+                                            <use xlink:href="#icon-cha"></use>
+                                        </svg>
+                                    </span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -485,22 +485,32 @@
             }
             $(".hotmusic-list").append(html);
         }
-        // console.log($(".hisclose"))
-        // $(".hisclose").on("click", function () {
-        //     console.log(1);
-        // })
-        var clock = null;
 
+        var clock = null;
+        // console.log($(".hisclose"))
+        $(".hissh").on("click",".hisclose",function () {
+            console.log($(this))
+            $(this).parent().remove();
+        })
         $(".searchcont .search-conts").on("input", function (e) {
             if (clock) {
                 window.clearTimeout(clock);
             }
             clock = setTimeout(function () {
-                console.log(1)
+                // console.log(1)
                 clock = null;
                 var $input = $(e.currentTarget)
                 var text = $input.val().trim();
-                console.log(text);
+                // console.log(text);
+                var query2 = new AV.Query('Song');
+                var Name = query2.contains('singer', text);
+                // query.equalTo('album', text);
+                // query.equalTo('singer', text);
+                if (text === "") {
+                    $("span.seachc").css("display", "none");
+                    $(".searchresults").css("display", "none");
+                    return;
+                }
                 $(".inputNow>span").text(text);
                 $("span.seachc").css("display", "inline");
                 $(".searchresults").css("display", "block");
@@ -511,13 +521,7 @@
                     $("span.seachc").css("display", "none");
                     $(".searchresults").css("display", "none");
                 })
-                var query2 = new AV.Query('Song');
-                var Name = query2.contains('singer', text);
-                // query.equalTo('album', text);
-                // query.equalTo('singer', text);
-                if (text === "") {
-                    return;
-                }
+
                 Name.find().then(function (results) {
                     $(".searchresults li").empty();
                     if (results.length === 0) {
@@ -536,7 +540,6 @@
                     }
                 })
             }, 400)
-
         })
 
 
