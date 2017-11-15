@@ -78,11 +78,11 @@
         // var songObject = AV.Object.extend("Song");//创建一个新的对象
         // var songObject1 = new songObject();//创建一个新到对象实例
         // songObject1.set({
-        //     name: "晴天",
-        //     singer: "周杰伦",
-        //     url: "http://oz73ituo2.bkt.clouddn.com/%E6%99%B4%E5%A4%A9.mp3",
-        //     imgUrl: "http://oz73ituo2.bkt.clouddn.com/%E6%99%B4%E5%A4%A9"
+        //     name: "当你",
+        //     singer: "林俊杰",
         // })//设置属性
+        //  AV.Object.saveAll(objects);
+
         var query = new AV.Query('Song');
         query.get(songId).then(function (results) {
             //  console.log(results.attributes)
@@ -107,9 +107,9 @@
                 appendLyrics(lyri, sumTime);
             }
             //  console.log(arr);
-        //    audio.currentTime = 180
+            //    audio.currentTime = 180
             setInterval(function () {
-                 var current = audio.currentTime;
+                var current = audio.currentTime;
                 // current = 200 ;
                 var $line = $(".lyrices > ul > li");
                 for (var i = 0; i < $line.length; i++) {
@@ -121,14 +121,14 @@
                         //  console.log($line.eq(i).offset().top);
                         // var lineLh = $line.eq(i).offset().top
                         //  $(".lyrices > ul").css("top", "-" + lineLh + "px");
-                        showLyrics($line.eq(i),i)
+                        showLyrics($line.eq(i), i)
                     } else if (current >= $lineTime && current < $lineNextTime) {
                         // console.log($line.eq(i).offset().top);
                         showLyrics($line.eq(i), i)
                         // if (i + 1 === $line.length - 1) {
                         //     showLyrics($line.eq(i + 1), i + 1)
                         // }
-                        break;                    
+                        break;
                     }
                 }
             }, 500)

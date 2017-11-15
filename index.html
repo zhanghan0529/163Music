@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>首页</title>
     <link rel="stylesheet" href="./src/css/index.css">
-
 </head>
 
 <body>
@@ -46,20 +45,20 @@
                 <a class="header-loaded" href="http://music.163.com/#/download">下载APP</a>
             </div>
             <ul class="tabs-list">
-                <li class="">
+                <li class="active1">
                     <span class="text">推荐音乐</span>
                 </li>
                 <li>
                     <span class="text">热歌榜</span>
                 </li>
-                <li class="active1">
+                <li class="">
                     <span class="text">搜索</span>
                 </li>
             </ul>
         </div>
         <div class="contents nocollapse">
             <ul class="contents-list">
-                <li class="recomusic active">
+                <li class="recomusic">
                     <div class="reco-music">
                         <span>推荐歌单</span>
                         <ul class="clearfix">
@@ -301,8 +300,7 @@
                         <span>查看完整榜单 ></span>
                     </div>
                 </li>
-
-                <li class="search-song">
+                <li class="search-song  active">
                     <div class="search">
                         <div class="search-cont clearfix">
                             <svg class="icon icon3" aria-hidden="true">
@@ -359,7 +357,7 @@
                                             <use xlink:href="#icon-zhong"></use>
                                         </svg>
                                         <div class="hiscont clearfix">
-                                            <span>11111</span>
+                                            <span>周杰伦</span>
                                         </div>
                                     </a>
                                     <span class="hisclose">
@@ -492,6 +490,7 @@
             console.log($(this))
             $(this).parent().remove();
         })
+
         $(".searchcont .search-conts").on("input", function (e) {
             if (clock) {
                 window.clearTimeout(clock);
@@ -503,13 +502,20 @@
                 var text = $input.val().trim();
                 // console.log(text);
                 var query2 = new AV.Query('Song');
-                var Name = query2.contains('singer', text);
+                var query3 = new AV.Query('Song');
+                var query4 = new AV.Query('Song');
+                var Singer = query2.contains('singer', text);
+                var Name = query3.contains('name', text);
+                var Album = query4.contains('album', text);
+                var query5 = AV.Query.or(Singer, Name, Album);
                 // query.equalTo('album', text);
                 // query.equalTo('singer', text);
-                if (text === "") {
+                if (text ==="") {
                     $("span.seachc").css("display", "none");
                     $(".searchresults").css("display", "none");
                     return;
+                }else{
+                    $("span.seachc").css("display", "inline");
                 }
                 $(".inputNow>span").text(text);
                 $("span.seachc").css("display", "inline");
@@ -521,19 +527,18 @@
                     $("span.seachc").css("display", "none");
                     $(".searchresults").css("display", "none");
                 })
-
-                Name.find().then(function (results) {
+                query5.find().then(function (results) {
+                    // console.log(results)
                     $(".searchresults li").empty();
                     if (results.length === 0) {
-                        console.log("没有结果");
+                        // console.log(1)
+                        noResult();
                     } else if (results.length > 0) {
-                        // console.log(results)
-                        appendHis(text)
+                        console.log(results)
                         for (var i = 0; i < results.length; i++) {
                             var results1 = results[i]
                             var songAttr = results1.attributes;
                             appendSearch(results1, songAttr);
-                            console.log(text)
                             // appendHis(results1, text)
                             // console.log($(".seachc"))
                         }
@@ -542,6 +547,15 @@
             }, 400)
         })
 
+        function noResult(){
+            var html = "";
+            html += "<li class='clearfix'>";
+            html += "<svg class='icon icon3' aria-hidden='true'>";
+            html += "<use xlink: href='#icon-sousuo'></use></svg>";
+            html += "<div class='resCont'>没有找到~</div>";
+            html += " </a></li>";
+            $(".resultList").append(html);
+        }
 
         function appendSearch(num, reco) {
             var html = "";
