@@ -108,14 +108,14 @@
                 var sumTime = lyMin * 60 + lySec;
                 appendLyrics(lyri, sumTime);
             }
-            
+
             //  console.log(arr);
             //    audio.currentTime = 215
             setInterval(function () {
                 var current = audio.currentTime;
                 // current = 200 ;
                 var $line = $(".lyrices > ul > li");
-                if (audio.duration === current ){
+                if (audio.duration === current) {
                     $(".song-gp .circle > span").addClass("pausing");
                     $(".song-gp .circle > img").addClass("pausing");
                     $(".btn2").addClass("active").siblings().removeClass("active");
@@ -162,15 +162,17 @@
             $(".btn1").on("click", function () {
                 // console.log($(this))
                 $(this).addClass("active").siblings().removeClass("active");
-                audio.play();
                 $(".song-gp .circle > img").removeClass("pausing");
                 $(".song-gp .circle > span").removeClass("pausing");
+                audio.play();
+
             })
             $(".btn2").on("click", function () {
                 $(this).addClass("active").siblings().removeClass("active");
-                audio.pause();
                 $(".song-gp .circle > span").addClass("pausing");
                 $(".song-gp .circle > img").addClass("pausing");
+                audio.pause();
+
             })
         }, function (error) {
             alert("获取歌曲失败~");
