@@ -349,7 +349,6 @@ function search() {
     var text = $(".search-conts").val();
      var renderHis = appendHis(text);
      $(".hissh").append(renderHis);
-     
       for (var i = 0; i < results.length; i++) {
         console.log(3);
         var results1 = results[i];
