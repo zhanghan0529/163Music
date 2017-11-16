@@ -4,8 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "wacth": "webpack -w",
+    "deploy": "webpack -p"
   },
+
+  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zhanghan0529/163_Music.git"
@@ -22,27 +27,7 @@
     "normalize.css": "^7.0.0"
   },
   "devDependencies": {
-    "loaders.css": "^0.1.2"
+    "loaders.css": "^0.1.2",
+    "webpack": "^3.8.1"
   }
 }
-
-
-
-
-
-
-5a05a73026a9130067fa7a83,
-5a05bd4a67f35600635199fc,
-5a05ba48ee920a0045cd6c26,
-5a05ba48ee920a0045cd6c25,
-5a05ba48ee920a0045cd6c23,
-5a05ba48ee920a0045cd6c22,
-5a05ba48ee920a0045cd6c21,
-5a0bafcaee920a00443a244a,
-5a0bafcaee920a00443a2449,
-5a0bafcaee920a00443a2448,
-5a0bafcaee920a00443a2447,
-5a05bd4a67f35600635199fd,
-5a05bd4a67f35600635199fb,
-5a05bd4a67f35600635199fa,
-5a05bc9d1579a30045a1742e

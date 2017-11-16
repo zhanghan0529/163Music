@@ -33,6 +33,7 @@
                     </div>
                 </div>
                 <img src="" class="pausing" alt="">
+                
             </div>
         </div>
         <div class="song-lyrics">
@@ -165,14 +166,12 @@
                 $(".song-gp .circle > img").removeClass("pausing");
                 $(".song-gp .circle > span").removeClass("pausing");
                 audio.play();
-
             })
             $(".btn2").on("click", function () {
                 $(this).addClass("active").siblings().removeClass("active");
                 $(".song-gp .circle > span").addClass("pausing");
                 $(".song-gp .circle > img").addClass("pausing");
                 audio.pause();
-
             })
         }, function (error) {
             alert("获取歌曲失败~");

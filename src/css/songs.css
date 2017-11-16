@@ -110,7 +110,7 @@ ul {
   -webkit-animation: rotate 15s infinite linear;
   animation: rotate 15s infinite linear;
 }
-.song-gp .circle > img {
+.song-gp .circle >img {
   position: absolute;
   width: 70%;
   border-radius: 50%;
@@ -123,6 +123,7 @@ ul {
   -webkit-animation: rotate 15s infinite linear;
   animation: rotate 15s infinite linear;
 }
+
 .song-gp .circle .playing{
   animation-play-state:running;
   -webkit-animation-play-state:running;
