@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="src/css/songlist.css">
+    <link rel="stylesheet" href="dist/songlist.css">
     <title>推荐列表</title>
 </head>
 
@@ -77,71 +77,12 @@
         </div>
     </div>
     <script src="//at.alicdn.com/t/font_407510_biev19ley3prdx6r.js"></script>
-    <script src="//cdn1.lncld.net/static/js/3.3.1/av-min.js"></script>
-    <script src="src/js/jQuery/jquery.min.js"></script>
+    <script src="src/js/lib/av-min.js"></script>
+    <script src="src/js/lib/AVinit.js"></script>
+    <!-- <script src="src/js/lib/jQuery/jquery.min.js"></script> -->
+    <script src="dist/songlist.bundle.js"></script>
     <script>
-        var APP_ID = 'S1iaURCy2FgNQ1kbgbav6H88-gzGzoHsz';
-        var APP_KEY = '6SwXnYDoVhaycC2vLBwJNc9D';
-        AV.init({
-            appId: APP_ID,
-            appKey: APP_KEY,
-        });
-        var query = new AV.Query("SongList");
-        var regx = /^\?+[a-z]+\=/;
-        var listId = window.location.search.replace(regx, "");
-        query.get(listId).then(function (results) {
 
-            var listMes = results.attributes;
-            var songI = listMes.songId;
-            appendList(listMes);
-            var Num = 1
-            var songL = songI.split(",");
-            for (var i = 0; i < songL.length; i++) {
-                $(".list-songs .ball-beat").remove();
-                var query1 = new AV.Query("Song");
-                query1.get(songL[i]).then(function (results) {
-                    $(".songsname").attr("data-load", "yes");
-                    var songMes = results.attributes;
-                    var songId = results.id
-                    appendSong(songId, songMes, Num);
-                    Num++;
-                }, function (error) {
-                    alert("获取歌曲失败~");
-                });
-
-            }
-        }, function (error) {
-            alert("获取歌曲列表失败~");
-        });
-
-
-        function appendList(mes) {
-            var html5 = "<div class='bac'><img src=" + mes.imgUrl + " alt=''></div>";
-            $(".list-header").append(html5);
-            var html1 = "<p>" + mes.ListenNum + "万</p>";
-            $(".listennum-in").append(html1);
-            var html2 = "<img src=" + mes.imgUrl + " alt=''>"
-            $(".music-img").append(html2)
-            var html3 = "<span class='title'>" + mes.title + "</span><a class='listaut'>" + mes.name + "</a>";
-            $(".headertitle").append(html3);
-            var html4 = "<div class='listsummary'>简介：" + mes.title + "</div>"
-            $(".list-tag").append(html4)
-        }
-        function appendSong(Id, mes1, num) {
-            var html = "";
-            html += '<li class="clearfix">'
-            html += '<a href=./song.html?id=' + Id + ' class="clearfix">';
-            html += '<div class="listnum active1">' + num + '</div>';
-            html += '<div class="playbtn clearfix">';
-            html += '<img src="http://oz73ituo2.bkt.clouddn.com/play1.png" alt=""></div>';
-            html += '<div class="tagmusic">';
-            html += '<div class="music-na">' + mes1.name + '</div>';
-            html += ' <div class="music-aut">';
-            html += '<img src="http://oz73ituo2.bkt.clouddn.com/sq.png" alt="">';
-            html += '<span> ' + mes1.singer + " - " + mes1.album + '</span>';
-            html += '</div></div></a></li>';
-            $(".songsname").append(html);
-        }
     </script>
 </body>
 

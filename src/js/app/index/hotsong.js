@@ -16,7 +16,7 @@ export default function hotSong() {
       var result = results[i];
       var songAttr = result.attributes;
       var renderPage = appendHot(result, songAttr, "0" + listNum);
-      if (listNum < 4) {
+      if (listNum <=4) {
         $(".listnum").addClass("active1");
         $(".hotmusic-list").append(renderPage);
       } else if (4 <= listNum && listNum < 10) {

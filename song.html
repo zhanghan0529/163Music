@@ -7,7 +7,7 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>play</title>
-    <link rel="stylesheet" href="./src/css/songs.css">
+    <link rel="stylesheet" href="dist/song.css">
 </head>
 
 <body>
@@ -61,21 +61,16 @@
         </div>
 
     </div>
-    <script src="//cdn1.lncld.net/static/js/3.3.1/av-min.js"></script>
-    <script src="./src/js/lib/jQuery/jquery.min.js"></script>
+       
+    <script src="src/js/lib/av-min.js"></script>
+    <script src="src/js/lib/AVinit.js"></script>
+    <!-- <script src="src/js/lib/jQuery/jquery.min.js"></script> -->
     <script src="//at.alicdn.com/t/font_407510_biev19ley3prdx6r.js"></script>
+    <script src="dist/song.bundle.js"></script>
     <script>
-        var regx = /^\?[a-z]+\=/g;
-        var songId = window.location.search.replace(regx, '');
         // console.log(songId);
         // console.log(window.location.search)
-        var APP_ID = 'S1iaURCy2FgNQ1kbgbav6H88-gzGzoHsz';
-        var APP_KEY = '6SwXnYDoVhaycC2vLBwJNc9D';
-        var songUrl;
-        AV.init({
-            appId: APP_ID,
-            appKey: APP_KEY,
-        });
+
         // var songObject = AV.Object.extend("SongList");//创建一个新的对象
         // var songObject1 = new songObject();//创建一个新到对象实例
         // songObject1.set({
@@ -85,135 +80,7 @@
         // })//设置属性
         //  var objects = [songObject1]
         //  AV.Object.saveAll(objects);
-
-        var query = new AV.Query('Song');
-        query.get(songId).then(function (results) {
-            //  console.log(results.attributes)
-            var songAttr = results.attributes;
-            $(".song-wrap>img").attr("src", songAttr.imgUrl);
-            $(".song-gp .circle>img").attr("src", songAttr.imgUrl);
-            appendSong(songAttr);
-            // $("audio").attr("src", songAttr.url)
-            // $("audio")[0].play();
-            // $audio.append("body");
-            var audio = document.createElement("audio")
-            audio.src = songAttr.url;
-            // audio1.play()
-            var lyrics = songAttr.lyrics.split("\n")
-            for (var i = 0; i < lyrics.length; i++) {
-                var lyric = lyrics[i].split("]");
-                var lyTime = lyric[0].substring(1);
-                var lyri = lyric[1];
-                var lyMin = +lyTime.split(":")[0];
-                var lySec = +lyTime.split(":")[1];
-                var sumTime = lyMin * 60 + lySec;
-                appendLyrics(lyri, sumTime);
-            }
-
-            //  console.log(arr);
-            //    audio.currentTime = 215
-            setInterval(function () {
-                var current = audio.currentTime;
-                // current = 200 ;
-                var $line = $(".lyrices > ul > li");
-                if (audio.duration === current) {
-                    $(".song-gp .circle > span").addClass("pausing");
-                    $(".song-gp .circle > img").addClass("pausing");
-                    $(".btn2").addClass("active").siblings().removeClass("active");
-                }
-                for (var i = 0; i < $line.length; i++) {
-                    var $lineTime = $line.eq(i).attr("data-time");
-                    var $lineNextTime = $line.eq(i + 1).attr("data-time");
-                    // current = 200;
-                    if (i === $line.length - 1) {
-                        //break;
-                        //  console.log($line.eq(i).offset().top);
-                        // var lineLh = $line.eq(i).offset().top
-                        //  $(".lyrices > ul").css("top", "-" + lineLh + "px");
-                        showLyrics($line.eq(i), i)
-                    } else if (current >= $lineTime && current < $lineNextTime) {
-                        // console.log($line.eq(i).offset().top);
-                        showLyrics($line.eq(i), i)
-                        // if (i + 1 === $line.length - 1) {
-                        //     showLyrics($line.eq(i + 1), i + 1)
-                        // }
-                        break;
-                    }
-                }
-            }, 500)
-
-            function showLyrics(e, i) {
-                var lineD = e.offset().top;
-                var wrapH = $(".lyrices > ul").offset().top;
-                var lineH = $(".lyrices > ul > li").outerHeight(true);
-                var drop = lineD - wrapH - lineH;
-                // console.log(i);
-                $(".lyrices > ul").css("top", lineH);
-                // console.log(lineH)
-                if (i === 0) {
-                    $(".lyrices > ul").css("top", 0);
-                    e.addClass("active1")
-                } else {
-                    e.addClass("active1").siblings().removeClass("active1");
-                    $(".lyrices > ul").css("top", "-" + drop + "px");
-                    // console.log(drop)
-                }
-            }
-
-            $(".btn1").on("click", function () {
-                // console.log($(this))
-                $(this).addClass("active").siblings().removeClass("active");
-                $(".song-gp .circle > img").removeClass("pausing");
-                $(".song-gp .circle > span").removeClass("pausing");
-                audio.play();
-            })
-            $(".btn2").on("click", function () {
-                $(this).addClass("active").siblings().removeClass("active");
-                $(".song-gp .circle > span").addClass("pausing");
-                $(".song-gp .circle > img").addClass("pausing");
-                audio.pause();
-            })
-        }, function (error) {
-            alert("获取歌曲失败~");
-        });
-        // $(".icon").on("click", function () {
-        //     console.log($(this))
-        //     $(this).attr("display", "none")
-        //         .siblings().attr("display", "block");
-        // })
-        function appendLyrics(lyrics, time) {
-            var html = "";
-            html += "<li data-time =" + time + ">" + lyrics + "</li>"
-            $(".lyrices>ul").append(html);
-        }
-        function appendSong(songMes) {
-            var html = '';
-            var html2 = '';
-            // html += "<img  class ='play'src='" + songMes.imgUrl + "' alt=''>";
-            html2 += "<span class='song-name'>" + songMes.name + " - </span>";
-            html2 += "<span class='song-author'>" + songMes.singer + "</span>";
-            $(".circle").append(html);
-            $(".lyrices").before(html2);
-        }
-        // <!-- <div class="song-lyrics" >
-        //         <span class="song-name">小半-</span>
-        //         <span class="song-author">陈粒</span>
-        //         <div class="lyrices">
-        //             <ul>
-        //                 <li>左顾右盼不自然的暗自喜欢</li>
-        //                 <li>偷偷搭讪总没完地坐立难安</li>
-        //                 <li>试探说晚安 多空泛又心酸</li>
-        //                 <li>试探说晚安 多空泛又心酸</li>
-        //                 <li>试探说晚安 多空泛又心酸</li>
-        //                 <li>试探说晚安 多空泛又心酸</li>
-        //                 <li>试探说晚安 多空泛又心酸</li>
-        //                 <li>试探说晚安 多空泛又心酸</li>
-        //                 <li>试探说晚安 多空泛又心酸</li>
-        //                 <li>试探说晚安 多空泛又心酸</li>
-        //             </ul>
-        //         </div>
-        // </div > -->
-        // <div class="song-gp">
+       
     </script>
 </body>
 
