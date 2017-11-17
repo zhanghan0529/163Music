@@ -15,7 +15,7 @@ export default function search() {
     }
     clock = setTimeout(function() {
       clock = null;
-      callback();
+       callback();
     }, time);
   } //限流函数
 
